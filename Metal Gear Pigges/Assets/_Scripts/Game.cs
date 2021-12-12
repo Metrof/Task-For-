@@ -21,11 +21,13 @@ public class Game : MonoBehaviour
     private bool gameOver = false;
 
     private AudioSource adSou;
+    private Collider2D farmerColl;
 
     private void Awake()
     {
         farmer.points = plantPoints;
         adSou = SoundManager.GetComponent<AudioSource>();
+        farmerColl = farmer.GetComponent<Collider2D>();
     }
     private void Update()
     {
@@ -58,6 +60,7 @@ public class Game : MonoBehaviour
         Destroy(bigBoom, 5f);
         adSou.PlayOneShot(winClip, 0.7F);
         adSou.clip = winClip;
+        farmerColl.isTrigger = false;
         gameOver = true;
     }
     void Planting()

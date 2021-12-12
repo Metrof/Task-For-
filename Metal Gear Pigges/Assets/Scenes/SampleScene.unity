@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3d3c382b0af434f9bacf17bb9580a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 4
   timeForPlanting: 3
   bombPreffab: {fileID: 4387791472657529579, guid: 9a9c402d1077976449150bc3739b931a, type: 3}
   joystick: {fileID: 2050258918}
@@ -455,15 +455,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b8b9a9da25215419cf7d18d6994196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 67955388}
   ViewDistance: 7
+  stunDuration: 7
+  attackDuration: 0.8
+  Target: {fileID: 0}
   DetectionDistance: 3
   defuseDuration: 6
-  stunDuration: 6
-  attackDuration: 0.8
   pointInLvl: 4
-  playerTransform: {fileID: 67955388}
   looseSprite: {fileID: 8809732215974140799, guid: 41bea3ea7f360044ba0930c1bfd5fdcc, type: 3}
-  Target: {fileID: 0}
   facing: 1
   currentPoint: 1
   mode: 0
@@ -4174,6 +4174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3c5e11a15266649a96f5dca5119929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bombColldown: 5
 --- !u!1 &1126280676
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BombButton : MonoBehaviour
 {
-    float bombColldown = 5f;
+    [SerializeField] float bombColldown = 4f;
     float colldownDone;
     float colldownStart;
     Button button;

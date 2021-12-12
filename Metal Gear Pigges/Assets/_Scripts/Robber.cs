@@ -127,6 +127,8 @@ public class Robber : MonoBehaviour
                 break;
             case "Enemy":
                 mode = eMode.die;
+                Enemy e = coll.GetComponent<Enemy>();
+                e.Attack();
                 gameInsp.SendMessage("Loose");
                 anim.Play("RobberDie");
                 Invoke("StopAnim", 3);
