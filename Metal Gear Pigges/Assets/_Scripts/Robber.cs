@@ -84,14 +84,12 @@ public class Robber : MonoBehaviour
                 if (dirHeld != -1)
                 {
                     mode = eMode.move;
-                    bombButt.Reload();
                 }
                 if (Time.time >= timePlantingDone)
                 {
                     dangerousrPlase.plant = true;
                     dangerousrPlase = null;
                     mode = eMode.idle;
-                    bombButt.Reload();
                 }
                 break;
             case eMode.die:
@@ -106,6 +104,7 @@ public class Robber : MonoBehaviour
             gameInsp.SendMessage("Planting");
             timePlantingDone = Time.time + timeForPlanting;
             mode = eMode.planting;
+            bombButt.Reload();
             return;
         }
         GameObject bomb = Instantiate(bombPreffab);
