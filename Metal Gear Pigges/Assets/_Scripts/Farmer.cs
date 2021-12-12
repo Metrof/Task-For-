@@ -8,7 +8,6 @@ public class Farmer : MonoBehaviour
     public enum eMode { patrol, run, difusing, stun, attack, idle }
 
     [Header("Set in inspector")]
-    [Range(0, 360)] public float ViewAngle = 90f;
     public float ViewDistance = 15f;
     public float DetectionDistance = 3f;
     public float defuseDuration = 6f;
@@ -32,6 +31,8 @@ public class Farmer : MonoBehaviour
     private SpriteRenderer sRend;
     private Animator anim;
     private Transform potentialPlayPos;
+
+    [SerializeField] private LayerMask layerMask;
 
     private float defuseDone;
     private float stunDone;
@@ -70,11 +71,12 @@ public class Farmer : MonoBehaviour
                 break;
             case eMode.run:
                 anim.CrossFade("WoodcutterRun", 0);
-                if (distanceToPlayer > DetectionDistance || IsInView())
+                if (!IsInView())
                 {
+                    if (distanceToPlayer < DetectionDistance) return;
                     potentialPlayPos.position = lastPlayerPos;
                     Target = potentialPlayPos;
-                    if ((potentialPlayPos.position - transform.position).magnitude > 1f && lastPlayerPos != Vector3.zero)
+                    if ((potentialPlayPos.position - transform.position).magnitude < 0.5f && lastPlayerPos != Vector3.zero)
                     {
                         return;
                     }
@@ -138,11 +140,10 @@ public class Farmer : MonoBehaviour
     }
     private bool IsInView() 
     {
-        float realAngle = Vector3.Angle(agent.velocity.normalized, playerTransform.position - transform.position);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, playerTransform.position - transform.position, out hit, ViewDistance))
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position + agent.velocity.normalized, playerTransform.position - transform.position);
+        if (hit2D.collider != null)
         {
-            if (realAngle < ViewAngle / 2f && Vector3.Distance(transform.position, playerTransform.position) <= ViewDistance && hit.transform == playerTransform.transform)
+            if (Vector3.Distance(transform.position, playerTransform.position) <= ViewDistance && hit2D.transform == playerTransform.transform)
             {
                 lastPlayerPos = playerTransform.position;
                 agent.speed = 4;
