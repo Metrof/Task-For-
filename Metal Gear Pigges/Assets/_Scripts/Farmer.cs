@@ -83,13 +83,13 @@ public class Farmer : MonoBehaviour
                     lastPlayerPos = Vector3.zero;
                     Target = points[currentPoint].transform;
                     mode = eMode.patrol;
-                    MoveToTarget();
                 }
                 if (distanceToPlayer < 1)
                 {
                     attackDone = Time.time + attackDuration;
                     mode = eMode.attack;
                 }
+                MoveToTarget();
                 break;
             case eMode.difusing:
                 anim.CrossFade("WoodcutterCraft", 0);
